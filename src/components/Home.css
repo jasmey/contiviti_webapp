@@ -1,0 +1,161 @@
+.home-cont{
+    display:flex;
+    flex-direction:row; 
+    z-index:2;
+    width:75vw;
+    height:70vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-calendar{
+    background-color: #f9f9f9a4;
+    color: #000;
+    border: 1px #00000000;
+    padding: 20px 20px;
+    border-radius: 30px;
+    margin: 10px;
+    cursor: auto;
+    transition: all 0.3s ease;
+    width:30vw;
+    height:70vh;
+    z-index: 2;
+}
+
+
+
+.week{
+    display:flex;
+    flex-direction:row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 10px;
+}
+
+.mini-calendar>h1{
+    font-size: 1.5rem;
+    margin: 0;
+    margin-bottom:20px;
+    margin-top:60px;
+    padding: 0;
+    align-items:center;
+    justify-content: center;
+}
+.day{
+    font-size:1rem;
+    height:30vh;
+    width: 30%;
+    display:flex;
+    flex-direction:column;
+    background-color:rgba(0, 0, 0, 0.265);
+    color:antiquewhite;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+}
+.day>p{
+    margin: 15px 0px;
+    
+}
+.dayoption{
+    background-color:rgba(242, 235, 227, 0.642);
+    color: #000;
+    margin:10px;
+    padding:10px;
+    border-radius:15px;
+    font-size:1rem;
+    height:3rem;
+    cursor:pointer;
+}
+.dayoption:hover{
+    background-color:rgba(214, 192, 168, 0.842);
+    color: #000;
+    margin:10px;
+    padding:10px;
+    border-radius:15px;
+    font-size:1rem;
+    height:3rem;
+    cursor:pointer;
+    transition: all 0.3s ease;
+}
+
+.tipoftheday{
+    padding-top:15px;
+
+}
+.tipoftheday>h1{
+    color:rgb(75, 121, 121);
+    font-size: 1.5rem;
+    margin: 15px;
+    padding: 0;
+    align-items:center;
+    justify-content: center;
+}
+.tipoftheday>p{
+    font-size:1rem;
+    margin: 15px 0px;
+    color:rgb(65, 49, 49);
+    
+}
+
+.journal-entry{
+    background-color: #f9f9f9a4;
+    color: #000;
+    border: 1px #00000000;
+    padding: 10px 20px;
+    border-radius: 30px;
+    margin: 10px;
+    cursor: auto;
+    transition: all 0.3s ease;
+    width:30vw;
+    height:70vh;
+    z-index: 2;
+
+}
+
+.input-selector{
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    
+}
+
+.input-button{
+    background-color: #4b737ea4;
+    color: #cfc8c8;
+    border: 1px #00000000;
+    padding:2rem;
+    align-items:center;
+    border-radius: 100px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width:8rem;
+    height:8rem;
+    z-index: 2;
+}
+.input-button:hover{
+    background-color: #4b737e;
+    color: #cfc8c8;
+    border: 1px #00000000;
+    padding:2rem;
+    align-items:center;
+    border-radius: 100px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width:8rem;
+    height:8rem;
+    z-index: 2;
+}
+
+.journal-entry>h1{
+    font-size: 2.5rem;
+    margin: 0;
+    padding: 0;
+    padding-top:40px;
+    align-items:center;
+    justify-content: center;
+}
