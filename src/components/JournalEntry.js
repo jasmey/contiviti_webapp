@@ -8,6 +8,7 @@ const JournalEntry = ({ selectedDay, viewOption, setViewOption}) => {
     const [currentDay, setCurrentDay] = useState('');
     const [yesterday, setYesterday] = useState('');
     const [twoDaysAgo, setTwoDaysAgo] = useState('');
+    const [textEntry, setTextEntry] = useState('');
 
     const getFormattedDate = (day) => {
         const today = new Date();
@@ -44,34 +45,85 @@ const JournalEntry = ({ selectedDay, viewOption, setViewOption}) => {
 
     const formattedSelectedDay = getFormattedDate(selectedDay);
 
+    useEffect(() => {
+        // Load the previously written entry if it exists
+        const existingEntry = entries.find(entry => {
+            const entryDate = new Date(entry.entry_date).toISOString().split('T')[0];
+            console.log('formatted', formattedSelectedDay);
+            return entryDate === formattedSelectedDay;
+        });
+        if (existingEntry) {
+            setTextEntry(existingEntry.content);
+        } else {
+            setTextEntry('');
+        }
+    }, [entries, formattedSelectedDay]);
+
+    
+
+    const handleSave = async () => {
+        console.log('Formatted Selected Day:', formattedSelectedDay); // Debug log
+    
+        try {
+            const response = await axios.put('http://localhost:3000/entries', {
+                content: textEntry,
+                entry_date: formattedSelectedDay
+            });
+    
+            console.log('Update successful:', response.data);
+    
+            // Update the entries state with the updated entry
+            setEntries(prevEntries => prevEntries.map(entry => 
+                entry.entry_date === formattedSelectedDay ? { ...entry, content: textEntry } : entry
+            ));
+    
+            setViewOption('view'); // Switch back to 'view' mode
+        } catch (error) {
+            console.error('Error updating entry:', error.response ? error.response.data : error.message);
+        }
+    };
+
     const renderViewOption = () => {
         switch (viewOption) {
             case 'view':
                 return (<div className="viewcont">
                     <div className="buttoncont">
-                        <div className="closeButton" onClick={() => setViewOption('')}>X</div>
                         <div className="editButton" onClick={() => setViewOption('write')}>Edit</div>
+                        <div className="closeButton" onClick={() => setViewOption('')}>X</div>
                     </div>
                     <div className="viewbox">
                     {entries
-                                .filter(entry => {
-                                    const rawEntryDate = entry.entry_date;
-                                    const entryDate = new Date(rawEntryDate).toISOString().split('T')[0];
-                                    //const entryDate = new Date(rawEntryDate).toLocaleDateString('en-US');
-                                    console.log(`Raw entry date: ${rawEntryDate}, Formatted entry date: ${entryDate}, Selected day: ${formattedSelectedDay}`);
-                                    return entryDate === formattedSelectedDay;
-                                })
-                                .map(entry => (
-                                    <div key={entry.id} className="daterender">
-                                        <p>{entry.content}</p>
-                                    </div>
-                                ))}
+                            .filter(entry => {
+                                const rawEntryDate = entry.entry_date;
+                                const entryDate = new Date(rawEntryDate).toISOString().split('T')[0];
+                                console.log(`Raw entry date: ${rawEntryDate}, Formatted entry date: ${entryDate}, Selected day: ${formattedSelectedDay}`);
+                                return entryDate === formattedSelectedDay;
+                            })
+                            .map(entry => (
+                                <div key={entry.id}>
+                                    {entry.content}
+                                </div>
+                            ))
+                        }
 
                     </div>
                 </div>);
             case 'write':
-                return <div>Writing a new journal entry for the selected day.</div>;
-            case 'share':
+                return (<div className="viewcont">
+                    <div className="buttoncont">
+                        <div className="editButton" onClick={handleSave}>Save</div>
+                        <div className="closeButton" onClick={() => setViewOption('')}>X</div>
+                    </div>
+                    <div className="viewbox">
+                        <textarea
+                            value={textEntry}
+                            onChange={(e) => setTextEntry(e.target.value)}
+                            className="textEntry"
+                        />
+
+                    </div>
+                </div>);
+                case 'share':
                 return <div>Sharing the journal entry for the selected day.</div>;
             default:
                 return <div>Select an option to continue.</div>;

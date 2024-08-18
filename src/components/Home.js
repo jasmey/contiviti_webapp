@@ -48,7 +48,7 @@ function Home() {
         console.log(`Selected Day: ${selectedDay}, View Option: ${viewOption}`);
     }, [selectedDay, viewOption]);
 
-    
+
     const fetchEntries = async () => {
         try {
             const response = await fetch('http://localhost:3000/entries');
@@ -77,7 +77,7 @@ function Home() {
                             <p dangerouslySetInnerHTML={{ __html: twoDaysAgo }} />
                         </div>
                         <div className="dayoptions">
-                            <div className="dayoption" onClick={() => { setSelectedDay('twoDaysAgo1'); setViewOption('view'); }}>{hasEntryForDate(currentDay) ? <FaEye/> : <FaEyeSlash/>} </div>
+                            <div className="dayoption" onClick={() => { setSelectedDay('twoDaysAgo1'); setViewOption('view'); }}><FaEye/>  </div>
                             <div className="dayoption" onClick={() => { setSelectedDay('twoDaysAgo1'); setViewOption('write'); }}><FaEdit/></div>
                             <div className="dayoption" onClick={() => { setSelectedDay('twoDaysAgo1'); setViewOption('share'); }}><FaShareSquare/></div>
                         </div>
@@ -88,7 +88,7 @@ function Home() {
                             <p dangerouslySetInnerHTML={{ __html: yesterday }} />
                         </div>
                     <div className="dayoptions">
-                            <div className="dayoption" onClick={() => { setSelectedDay('yesterday1'); setViewOption('view'); }}>{hasEntryForDate(currentDay) ? <FaEye/> : <FaEyeSlash/>}</div>
+                            <div className="dayoption" onClick={() => { setSelectedDay('yesterday1'); setViewOption('view'); }}><FaEye/> </div>
                             <div className="dayoption" onClick={() => { setSelectedDay('yesterday1'); setViewOption('write'); }}><FaEdit/></div>
                             <div className="dayoption" onClick={() => { setSelectedDay('yesterday1'); setViewOption('share'); }}><FaShareSquare/></div>
                         </div>
@@ -99,7 +99,7 @@ function Home() {
                             <p dangerouslySetInnerHTML={{ __html: currentDay }} />
                         </div>
                          <div className="dayoptions">
-                            <div className="dayoption" onClick={() => { setSelectedDay('currentDay1'); setViewOption('view'); }}>{hasEntryForDate(currentDay) ? <FaEye/> : <FaEyeSlash/>}</div>
+                            <div className="dayoption" onClick={() => { setSelectedDay('currentDay1'); setViewOption('view'); }}><FaEye/> </div>
                             <div className="dayoption" onClick={() => { setSelectedDay('currentDay1'); setViewOption('write'); }}><FaEdit/></div>
                             <div className= "dayoption" onClick={() => { setSelectedDay('currentDay1'); setViewOption('share'); }}><FaShareSquare/></div>
                         </div>

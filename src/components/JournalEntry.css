@@ -3,3 +3,45 @@
     color: #779094;
     margin: 20px 10px;
 }
+
+.buttoncont{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    height:20px;
+    font-size: 1rem;
+} 
+
+
+
+.buttoncont>div{
+    height: 100%;
+    background-color: rgba(81, 109, 120, 0.447);
+    color:antiquewhite;
+    border-radius: 20px;
+    height: 30px;
+    width: 50px;
+    text-align: center;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    cursor:pointer;
+    
+}
+.viewbox{
+    background-color: #60452418;
+    border-radius: 20px;
+    height: 50vh;
+    padding: 5px;
+    
+}
+
+.textEntry{
+    background-color: #60452400;
+    border-radius: 20px;
+    height: 50vh;
+    padding: 15px;
+    width:100%;
+    border-color: #00000000;
+}

@@ -35,17 +35,60 @@ db.serialize(() => {
     db.run("INSERT INTO entries (entry_date, content) VALUES (?, ?)", [twoDaysAgo.toISOString().split('T')[0], 'Entry for two days ago']);
 });
 
-// POST endpoint to add entries
-app.post('/entries', (req, res) => {
-    const { content } = req.body;
-    db.run(`INSERT INTO entries (content) VALUES (?)`, [content], function(err) {
+//fetch entries by date
+app.get('/entries/:date', (req, res) => {
+    const { date } = req.params;
+    db.get(`SELECT * FROM entries WHERE entry_date = ?`, [date], (err, row) => {
         if (err) {
-            res.status(400).json({ "error": err.message });
-            return;
+            return res.status(400).json({ error: err.message });
         }
         res.json({
-            "message": "success",
-            "data": { id: this.lastID, content }
+            message: "success",
+            data: row
+        });
+    });
+});
+
+// POST endpoint to add entries
+app.post('/entries', (req, res) => {
+    const { content, entry_date } = req.body;
+
+    console.log('Received content:', content); // Debug log
+    console.log('Received entry_date:', entry_date); // Debug log
+
+    if (!content || !entry_date) {
+        return res.status(400).json({ error: "Content and entry date are required" });
+    }
+
+    db.run(`INSERT INTO entries (content, entry_date) VALUES (?, ?)`, [content, entry_date], function(err) {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        res.status(201).json({
+            message: "success",
+            data: { id: this.lastID, content, entry_date }
+        });
+    });
+});
+
+// PUT endpoint to update entries
+app.put('/entries', (req, res) => {
+    const { content, entry_date } = req.body;
+
+    console.log('Received content:', content); // Debug log
+    console.log('Received entry_date:', entry_date); // Debug log
+
+    if (!content || !entry_date) {
+        return res.status(400).json({ error: "Content and entry date are required" });
+    }
+
+    db.run(`UPDATE entries SET content = ? WHERE entry_date = ?`, [content, entry_date], function(err) {
+        if (err) {
+            return res.status(400).json({ error: err.message });
+        }
+        res.status(200).json({
+            message: "success",
+            data: { content, entry_date }
         });
     });
 });
