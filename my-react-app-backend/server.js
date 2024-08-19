@@ -35,6 +35,20 @@ db.serialize(() => {
     db.run("INSERT INTO entries (entry_date, content) VALUES (?, ?)", [twoDaysAgo.toISOString().split('T')[0], 'Entry for two days ago']);
 });
 
+// Root route handler to fetch and display entries
+app.get('/', (req, res) => {
+    db.all("SELECT * FROM entries", [], (err, rows) => {
+        if (err) {
+            res.status(400).json({ "error": err.message });
+            return;
+        }
+        res.json({
+            "message": "success",
+            "data": rows
+        });
+    });
+});
+
 //fetch entries by date
 app.get('/entries/:date', (req, res) => {
     const { date } = req.params;
