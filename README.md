@@ -1,3 +1,16 @@
+# Notes for Cotivti Reviewer
+
+To run the local database server, navigate to my-react-app-backend by executing "cd my-react-app-backend" in the main directory folder. Then execute "node server.js" and you should see confirmation messages in the terminal indicating correct startup.
+
+To test out the webapp functionality, navigate to the main directory folder and execute "npm run start" on port localhost:3001 (the database should be on localhost:3000). 
+
+Thanks!!
+
+----------
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
