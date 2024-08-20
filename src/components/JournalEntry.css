@@ -21,7 +21,7 @@
     color:antiquewhite;
     border-radius: 20px;
     height: 30px;
-    width: 50px;
+    width: 60px;
     text-align: center;
     display: flex;
     align-items:center;
@@ -34,14 +34,32 @@
     border-radius: 20px;
     height: 50vh;
     padding: 5px;
-    
+    font-size:0.3em;
+    display:flex;
+    align-items:center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .textEntry{
     background-color: #60452400;
     border-radius: 20px;
-    height: 50vh;
+    height: 40vh;
     padding: 15px;
     width:100%;
     border-color: #00000000;
+}
+
+.stt-button{
+    background-color: rgba(81, 109, 120, 0.447);
+    color:antiquewhite;
+    border-radius: 50px;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+    cursor:pointer;
+    margin: 10px;
 }

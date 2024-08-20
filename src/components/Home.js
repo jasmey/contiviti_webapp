@@ -1,12 +1,11 @@
 import React, { useState, useEffect }from 'react'
 import './Home.css'
-import { MdOutlineKeyboardVoice,  MdOutlinePhotoCamera , MdDelete } from "react-icons/md";
-import { FaRegKeyboard, FaPlus, FaEdit, FaEye, FaEyeSlash, FaShareSquare } from "react-icons/fa";
+//import { MdOutlineKeyboardVoice,  MdOutlinePhotoCamera , MdDelete } from "react-icons/md";
+import { FaEdit, FaEye, FaShareSquare } from "react-icons/fa";
 import JournalEntry from './JournalEntry';
-import axios from 'axios';
+// import axios from 'axios';
 
 function Home() {
-    const [entries, setEntries] = useState([]);
     const [currentDay, setCurrentDay] = useState('');
     const [yesterday, setYesterday] = useState('');
     const [twoDaysAgo, setTwoDaysAgo] = useState('');
@@ -43,25 +42,11 @@ function Home() {
 
         setTwoDaysAgo(formatted2dayString);
 
-        fetchEntries();
 
         console.log(`Selected Day: ${selectedDay}, View Option: ${viewOption}`);
     }, [selectedDay, viewOption]);
 
 
-    const fetchEntries = async () => {
-        try {
-            const response = await fetch('http://localhost:3000/entries');
-            const data = await response.json();
-            setEntries(data.data); // Adjusting to access the 'data' property from the response
-        } catch (error) {
-            console.error('Error fetching entries:', error);
-        }
-    };
-
-    const hasEntryForDate = (date) => {
-        return entries.some(entry => new Date(entry.entry_date).toLocaleDateString() === date);
-    };
 
 
   return (
