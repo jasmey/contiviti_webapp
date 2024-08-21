@@ -228,7 +228,7 @@ const JournalEntry = ({ selectedDay, viewOption, setViewOption }) => {
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer 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`
+                    'Authorization': `Bearer YOUR_API_KEY`
                 }
             });
 
